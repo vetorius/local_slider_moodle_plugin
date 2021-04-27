@@ -10,23 +10,30 @@
 
 require(__DIR__. '/../../config.php');
 
+global $DB;
+
 // get slidername parameter
-// $slidername = optional_param('slidername', '', PARAM_ALPHA);
-// $sliderExtensionUrl =  new moodle_url('/local/slider/getslider.php');
-// $PAGE->set_url($sliderExtensionUrl);
+$slidername = optional_param('slidername', '', PARAM_RAW);
+
+$PAGE->set_url(new moodle_url('/local/slider/getslider.php'));
+
 
 // only logged users can access
 require_login();
 
 // get slider data from database
-
+if ($sliderdata = $DB->get_record('local_slider', array('name'=>$slidername), 'data')) {
+    $jsondata = $sliderdata->data;
+} else {
+    $jsondata = '{ }';
+}
 
 
 // send mime type and encoding
 @header('Content-Type: application/json; charset=utf-8');
-
+//@header('Content-Type: text/plain; charset=utf-8');
 // we do not want html markup
 @ini_set('html_errors', 'off');
 
 // send json data
-echo '{ "sesiones": [ { "name": "S-1", "actividades": []}, { "name": "S-2", "actividades": []} ]}';
+echo $jsondata;
