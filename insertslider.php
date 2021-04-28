@@ -32,7 +32,7 @@ global $DB;
 
 $PAGE->set_url(new moodle_url('/local/slider/insertslider.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title('Insertar nuevo slider');
+$PAGE->set_title(get_string('insertslidertitle', 'local_slider'));
 
 require_login();
 
@@ -43,7 +43,7 @@ $mform = new insertslider_form();
 //Form processing and displaying is done here
 if ($mform->is_cancelled()) {
     //Go back to main page
-    redirect($CFG->wwwroot . '/local/slider/insertslider.php', 'Has cancelado la creación del slider');
+    redirect($CFG->wwwroot . '/local/slider/insertslider.php', get_string('cancelcreateslider', 'local_slider'));
 
 } else if ($fromform = $mform->get_data()) {
     //insert the data into the database
@@ -53,7 +53,7 @@ if ($mform->is_cancelled()) {
 
     $DB->insert_record('local_slider', $recordtoinsert);
 
-    redirect($CFG->wwwroot . '/local/slider/insertslider.php', 'Datos insertados');
+    redirect($CFG->wwwroot . '/local/slider/insertslider.php', get_string('successcreateslider', 'local_slider'));
     
 }
 

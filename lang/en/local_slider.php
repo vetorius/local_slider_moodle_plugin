@@ -26,3 +26,14 @@
  */
 
 $string['pluginname'] = 'Slider';
+
+$string['slidername'] = 'Slider name';
+$string['sliderjson'] = 'Slider JSON';
+$string['insertslidertitle'] = 'Insert new slider';
+$string['cancelcreateslider'] = 'Slider creation cancelled';
+$string['successcreateslider'] = 'Slider created successfully';
+
+$string['updateurl'] = 'Update service URL:';
+$string['updateurldesc'] = 'This is the URL to access the External uldate service';
+$string['apikey'] = 'External API Key:';
+$string['apikeydesc'] = 'This is the key used to access the External API';

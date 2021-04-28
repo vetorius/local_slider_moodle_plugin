@@ -34,11 +34,11 @@ class insertslider_form extends moodleform {
  
         $mform = $this->_form; // Don't forget the underscore! 
  
-        $mform->addElement('text', 'name', 'Nombre del slider', 'size="50"');
+        $mform->addElement('text', 'name', get_string('slidername', 'local_slider'), 'size="50"');
         $mform->setType('name', PARAM_NOTAGS);
         $mform->setDefault('name', '');
 
-        $mform->addElement('textarea', 'data', 'JSON del slider', 'wrap="virtual" rows="10" cols="80"');
+        $mform->addElement('textarea', 'data', get_string('sliderjson', 'local_slider'), 'wrap="virtual" rows="10" cols="80"');
         $mform->setType('data', PARAM_RAW);
         $mform->setDefault('data', '');
         

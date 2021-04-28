@@ -45,10 +45,10 @@ if ( $hassiteconfig ){
 		'local_slider/updateurl',
  
 		// This is the friendly title for the config, which will be displayed
-		'Update service URL:',
+		get_string('updateurl', 'local_slider'),
  
 		// This is helper text for this config field
-		'This is the URL to access the External uldate service',
+		get_string('updateurldesc', 'local_slider'),
  
 		// This is the default value
 		'No Key Defined',
@@ -65,10 +65,10 @@ if ( $hassiteconfig ){
 		'local_slider/apikey',
  
 		// This is the friendly title for the config, which will be displayed
-		'External API: Key',
+		get_string('apikey', 'local_slider'),
  
 		// This is helper text for this config field
-		'This is the key used to access the External API',
+		get_string('apikeydesc', 'local_slider'),
  
 		// This is the default value
 		'No Key Defined',
