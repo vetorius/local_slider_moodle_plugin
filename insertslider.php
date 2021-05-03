@@ -57,8 +57,16 @@ if ($mform->is_cancelled()) {
     
 }
 
+$PAGE->requires->js(new moodle_url('/local/slider/editorassets/app.2abe880d.js'));
+$PAGE->requires->js(new moodle_url('/local/slider/editorassets/chunk-vendors.365116bf.js'));
+
+$PAGE->requires->css(new moodle_url('/local/slider/editorassets/app.6d52dc05.css'));
+
 echo $OUTPUT->header();
 
+//displays the slider editor
+
+echo '<div id="app"></div>';
 //displays the form
 $mform->display();
 
