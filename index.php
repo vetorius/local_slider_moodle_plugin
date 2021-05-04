@@ -18,15 +18,29 @@
  */
 
 /**
- * Version details
+ * index page for local_slider module
  *
  * @package    local_slider
  * @author     Víctor M. Sanchez
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+require_once(__DIR__. '/../../config.php');
 
-$plugin->component = 'local_slider';
-$plugin->version   = 2021042600;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2020110300;        // Requires this Moodle version
+
+$PAGE->set_url(new moodle_url('/local/slider/index.php'));
+$PAGE->set_context(\context_system::instance());
+$PAGE->set_title(get_string('indexslidertitle', 'local_slider'));
+
+require_login();
+
+echo $OUTPUT->header();
+
+//displays the slider editor
+$createslider = new moodle_url('/local/slider/insertslider.php?create=1');
+$insertslider = new moodle_url('/local/slider/insertslider.php');
+
+echo '<p><a href="' . $insertslider . '">' . get_string('insertslidertitle', 'local_slider') . '</a></p>';
+echo '<p><a href="' . $createslider . '">' . get_string('createslidertitle', 'local_slider') . '</a></p>';
+
+echo $OUTPUT->footer();

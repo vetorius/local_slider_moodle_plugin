@@ -18,15 +18,25 @@
  */
 
 /**
- * Version details
+ * local_slider english language definitions
  *
  * @package    local_slider
  * @author     Víctor M. Sanchez
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+$string['pluginname'] = 'Slider';
 
-$plugin->component = 'local_slider';
-$plugin->version   = 2021042600;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2020110300;        // Requires this Moodle version
+$string['indexslidertitle'] = 'módulo slider NCA';
+
+$string['insertslidertitle'] = 'Insertar nuevo slider';
+$string['createslidertitle'] = 'Crear nuevo slider';
+$string['slidername'] = 'Nombre del slider';
+$string['sliderjson'] = 'JSON del slider' ;
+$string['cancelcreateslider'] = 'Creación de slider cancelada';
+$string['successcreateslider'] = 'Slider creao con éxito';
+
+$string['updateurl'] = 'URL del servidio de actualización:';
+$string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización';
+$string['apikey'] = 'API Key:';
+$string['apikeydesc'] = 'Es la clave para acceder a la API externa de actualización';
