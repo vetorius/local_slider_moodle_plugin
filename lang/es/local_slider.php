@@ -27,15 +27,15 @@
 
 $string['pluginname'] = 'Slider';
 
-$string['indexslidertitle'] = 'NCA slider module';
+$string['indexslidertitle'] = 'módulo slider NCA';
 
-$string['insertslidertitle'] = 'Insert new slider';
-$string['slidername'] = 'Slider name';
-$string['sliderjson'] = 'Slider JSON';
-$string['cancelcreateslider'] = 'Slider creation cancelled';
-$string['successcreateslider'] = 'Slider created successfully';
+$string['insertslidertitle'] = 'Insertar nuevo slider';
+$string['slidername'] = 'Nombre del slider';
+$string['sliderjson'] = 'JSON del slider' ;
+$string['cancelcreateslider'] = 'Creación de slider cancelada';
+$string['successcreateslider'] = 'Slider creao con éxito';
 
-$string['updateurl'] = 'Update service URL:';
-$string['updateurldesc'] = 'This is the URL to access the External update service';
-$string['apikey'] = 'External API Key:';
-$string['apikeydesc'] = 'This is the key used to access the External API';
+$string['updateurl'] = 'URL del servidio de actualización:';
+$string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización';
+$string['apikey'] = 'API Key:';
+$string['apikeydesc'] = 'Es la clave para acceder a la API externa de actualización';
