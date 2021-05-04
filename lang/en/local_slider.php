@@ -30,6 +30,7 @@ $string['pluginname'] = 'Slider';
 $string['indexslidertitle'] = 'NCA slider module';
 
 $string['insertslidertitle'] = 'Insert new slider';
+$string['createslidertitle'] = 'Create new slider';
 $string['slidername'] = 'Slider name';
 $string['sliderjson'] = 'Slider JSON';
 $string['cancelcreateslider'] = 'Slider creation cancelled';

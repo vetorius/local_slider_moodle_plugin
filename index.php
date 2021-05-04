@@ -37,8 +37,10 @@ require_login();
 echo $OUTPUT->header();
 
 //displays the slider editor
+$createslider = new moodle_url('/local/slider/insertslider.php?create=1');
+$insertslider = new moodle_url('/local/slider/insertslider.php');
 
-echo '¡Hola mundo!';
-
+echo '<p><a href="' . $insertslider . '">' . get_string('insertslidertitle', 'local_slider') . '</a></p>';
+echo '<p><a href="' . $createslider . '">' . get_string('createslidertitle', 'local_slider') . '</a></p>';
 
 echo $OUTPUT->footer();
