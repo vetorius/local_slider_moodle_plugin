@@ -36,8 +36,15 @@ $string['sliderjson'] = 'JSON del slider' ;
 $string['cancelcreateslider'] = 'Creación de slider cancelada';
 $string['successcreateslider'] = 'Slider creado con éxito';
 $string['successupdateslider'] = 'Slider actualizado con éxito';
+$string['successdeleteslider'] = 'Slider borrado con éxito';
 
 $string['updateurl'] = 'URL del servidio de actualización:';
 $string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización';
 $string['apikey'] = 'API Key:';
 $string['apikeydesc'] = 'Es la clave para acceder a la API externa de actualización';
+
+$string['managesliderstitle'] = 'Gestionar sliders';
+$string['action'] = 'Acción';
+$string['edit'] = 'modificar';
+$string['delete'] = 'borrar';
+$string['sendaction'] = 'Realizar acción';
