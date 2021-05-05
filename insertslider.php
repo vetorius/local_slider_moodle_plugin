@@ -62,10 +62,10 @@ if ($mform->is_cancelled()) {
     }
 }
 
-$PAGE->requires->js(new moodle_url('/local/slider/editorassets/app.f63bfe83.js'));
+$PAGE->requires->js(new moodle_url('/local/slider/editorassets/app.9044506f.js'));
 $PAGE->requires->js(new moodle_url('/local/slider/editorassets/chunk-vendors.365116bf.js'));
 
-$PAGE->requires->css(new moodle_url('/local/slider/editorassets/app.be27efdb.css'));
+$PAGE->requires->css(new moodle_url('/local/slider/editorassets/app.02092411.css'));
 
 echo $OUTPUT->header();
 
