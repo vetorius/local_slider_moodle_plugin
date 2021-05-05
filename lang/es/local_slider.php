@@ -27,14 +27,15 @@
 
 $string['pluginname'] = 'Slider';
 
-$string['indexslidertitle'] = 'módulo slider NCA';
+$string['indexslidertitle'] = 'Módulo slider NCA';
 
 $string['insertslidertitle'] = 'Insertar nuevo slider';
 $string['createslidertitle'] = 'Crear nuevo slider';
 $string['slidername'] = 'Nombre del slider';
 $string['sliderjson'] = 'JSON del slider' ;
 $string['cancelcreateslider'] = 'Creación de slider cancelada';
-$string['successcreateslider'] = 'Slider creao con éxito';
+$string['successcreateslider'] = 'Slider creado con éxito';
+$string['successupdateslider'] = 'Slider actualizado con éxito';
 
 $string['updateurl'] = 'URL del servidio de actualización:';
 $string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización';

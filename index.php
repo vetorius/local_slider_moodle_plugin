@@ -27,6 +27,7 @@
 
 require_once(__DIR__. '/../../config.php');
 
+global $DB;
 
 $PAGE->set_url(new moodle_url('/local/slider/index.php'));
 $PAGE->set_context(\context_system::instance());
@@ -42,5 +43,7 @@ $insertslider = new moodle_url('/local/slider/insertslider.php');
 
 echo '<p><a href="' . $insertslider . '">' . get_string('insertslidertitle', 'local_slider') . '</a></p>';
 echo '<p><a href="' . $createslider . '">' . get_string('createslidertitle', 'local_slider') . '</a></p>';
-
+if ($tabledata = $DB->get_records('local_slider')) {
+    print_r($tabledata);
+}
 echo $OUTPUT->footer();

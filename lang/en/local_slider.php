@@ -35,6 +35,7 @@ $string['slidername'] = 'Slider name';
 $string['sliderjson'] = 'Slider JSON';
 $string['cancelcreateslider'] = 'Slider creation cancelled';
 $string['successcreateslider'] = 'Slider created successfully';
+$string['successupdateslider'] = 'Slider updated successfully';
 
 $string['updateurl'] = 'Update service URL:';
 $string['updateurldesc'] = 'This is the URL to access the External update service';
