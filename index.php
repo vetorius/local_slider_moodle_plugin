@@ -40,8 +40,15 @@ $createslider = new moodle_url('/local/slider/insertslider.php?create=1');
 $insertslider = new moodle_url('/local/slider/insertslider.php');
 $managesliders = new moodle_url('/local/slider/manage.php');
 
-echo '<p><a href="' . $insertslider . '">' . get_string('insertslidertitle', 'local_slider') . '</a></p>';
-echo '<p><a href="' . $createslider . '">' . get_string('createslidertitle', 'local_slider') . '</a></p>';
-echo '<p><a href="' . $managesliders . '">' . get_string('managesliderstitle', 'local_slider') . '</a></p>';
+echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
+echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
+echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
+
+/*
+echo '<hr/>';
+echo '<pre>';
+var_dump($CFG);
+echo '</pre>';
+*/
 
 echo $OUTPUT->footer();

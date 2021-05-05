@@ -62,10 +62,15 @@ if ($mform->is_cancelled()) {
     }
 }
 
-$PAGE->requires->js(new moodle_url('/local/slider/editorassets/app.9044506f.js'));
-$PAGE->requires->js(new moodle_url('/local/slider/editorassets/chunk-vendors.365116bf.js'));
-
-$PAGE->requires->css(new moodle_url('/local/slider/editorassets/app.02092411.css'));
+if ($CFG->theme == "boost") {
+    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b4/app.js'));
+    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b4/chunk-vendors.js'));
+    $PAGE->requires->css(new moodle_url('/local/slider/editorassets/b4/app.css'));
+} else {
+    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b2/app.js'));
+    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b2/chunk-vendors.js'));
+    $PAGE->requires->css(new moodle_url('/local/slider/editorassets/b2/app.css'));
+}
 
 echo $OUTPUT->header();
 

@@ -30,9 +30,6 @@ require_once(__DIR__. '/classes/form/managesliders.php');
 
 global $DB;
 
-// $action = optional_param('action', '', PARAM_ALPHANUMEXT);
-// $name = optional_param('name', '', PARAM_RAW);
-
 $PAGE->set_url(new moodle_url('/local/slider/manage.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('managesliderstitle', 'local_slider'));
@@ -55,8 +52,6 @@ if ($fromform = $mform->get_data()) {
             break;
     }
 }
-
-
 
 echo $OUTPUT->header();
 
