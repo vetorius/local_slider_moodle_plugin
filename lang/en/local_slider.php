@@ -35,8 +35,16 @@ $string['slidername'] = 'Slider name';
 $string['sliderjson'] = 'Slider JSON';
 $string['cancelcreateslider'] = 'Slider creation cancelled';
 $string['successcreateslider'] = 'Slider created successfully';
+$string['successupdateslider'] = 'Slider updated successfully';
+$string['successdeleteslider'] = 'Slider deleted successfully';
 
 $string['updateurl'] = 'Update service URL:';
 $string['updateurldesc'] = 'This is the URL to access the External update service';
 $string['apikey'] = 'External API Key:';
 $string['apikeydesc'] = 'This is the key used to access the External API';
+
+$string['managesliderstitle'] = 'Manage sliders';
+$string['action'] = 'Action';
+$string['edit'] = 'edit';
+$string['delete'] = 'delete';
+$string['sendaction'] = 'Send action';

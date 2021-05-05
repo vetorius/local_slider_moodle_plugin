@@ -18,7 +18,7 @@
  */
 
 /**
- * index page for local_slider module
+ * manage sliders page for local_slider module
  *
  * @package    local_slider
  * @author     Víctor M. Sanchez
@@ -26,29 +26,36 @@
  */
 
 require_once(__DIR__. '/../../config.php');
+require_once(__DIR__. '/classes/form/managesliders.php');
 
-$PAGE->set_url(new moodle_url('/local/slider/index.php'));
+global $DB;
+
+$PAGE->set_url(new moodle_url('/local/slider/manage.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('indexslidertitle', 'local_slider'));
+$PAGE->set_title(get_string('managesliderstitle', 'local_slider'));
 
 require_login();
 
+// initialize the form
+$mform = new managesliders_form();
+
+//Form processing and displaying is done here
+if ($fromform = $mform->get_data()) {
+    switch ($fromform->action){
+        case 'edit':
+            redirect(new moodle_url('/local/slider/insertslider.php?name=' . $fromform->name));
+            break;
+
+        case 'delete':
+            $DB->delete_records('local_slider', array('name'=>$fromform->name));
+            redirect(new moodle_url('/local/slider/index.php'), get_string('successdeleteslider', 'local_slider'));
+            break;
+    }
+}
+
 echo $OUTPUT->header();
 
-//displays the slider editor
-$createslider = new moodle_url('/local/slider/insertslider.php?create=1');
-$insertslider = new moodle_url('/local/slider/insertslider.php');
-$managesliders = new moodle_url('/local/slider/manage.php');
-
-echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
-echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
-echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
-
-/*
-echo '<hr/>';
-echo '<pre>';
-var_dump($CFG);
-echo '</pre>';
-*/
+//displays the form
+$mform->display();
 
 echo $OUTPUT->footer();
