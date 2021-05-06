@@ -55,21 +55,21 @@ if ($mform->is_cancelled()) {
     if ($sliderdata = $DB->get_record('local_slider', array('name'=>$fromform->name))) {
         $recordtoinsert->id = $sliderdata->id;
         $DB->update_record('local_slider', $recordtoinsert);
-        redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successupdateslider', 'local_slider'));
+        redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successupdateslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
     } else {
         $DB->insert_record('local_slider', $recordtoinsert);
-        redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successcreateslider', 'local_slider'));
+        redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successcreateslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
     }
 }
 
-if ($CFG->theme == "boost") {
-    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b4/app.js'));
-    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b4/chunk-vendors.js'));
-    $PAGE->requires->css(new moodle_url('/local/slider/editorassets/b4/app.css'));
-} else {
+if ($CFG->theme == "essential") {
     $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b2/app.js'));
     $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b2/chunk-vendors.js'));
     $PAGE->requires->css(new moodle_url('/local/slider/editorassets/b2/app.css'));
+} else {
+    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b4/app.js'));
+    $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b4/chunk-vendors.js'));
+    $PAGE->requires->css(new moodle_url('/local/slider/editorassets/b4/app.css'));
 }
 
 echo $OUTPUT->header();

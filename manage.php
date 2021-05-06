@@ -40,7 +40,11 @@ require_login();
 $mform = new managesliders_form();
 
 //Form processing and displaying is done here
-if ($fromform = $mform->get_data()) {
+if ($mform->is_cancelled()) {
+    //Go back to main page
+    redirect($CFG->wwwroot . '/local/slider/index.php');
+
+} else if ($fromform = $mform->get_data()) {
     switch ($fromform->action){
         case 'edit':
             redirect(new moodle_url('/local/slider/insertslider.php?name=' . $fromform->name));
@@ -48,7 +52,17 @@ if ($fromform = $mform->get_data()) {
 
         case 'delete':
             $DB->delete_records('local_slider', array('name'=>$fromform->name));
-            redirect(new moodle_url('/local/slider/index.php'), get_string('successdeleteslider', 'local_slider'));
+            redirect(new moodle_url('/local/slider/index.php'), get_string('successdeleteslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
+            break;
+        case 'rename':
+            if ($recordtoupdate = $DB->get_record('local_slider', array('name'=>$fromform->name))){
+                $recordtoupdate->name = $fromform->newname;
+                $DB->update_record('local_slider', $recordtoupdate);
+                redirect(new moodle_url('/local/slider/index.php'), get_string('successrenameslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
+            } else {
+                redirect(new moodle_url('/local/slider/index.php'), get_string('error', 'local_slider'),null, \core\output\notification::NOTIFY_ERROR);
+            }
+            
             break;
     }
 }

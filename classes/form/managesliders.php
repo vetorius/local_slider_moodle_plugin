@@ -37,7 +37,8 @@ class managesliders_form extends moodleform {
 
         $actionsarray = array(
             'edit' => get_string('edit', 'local_slider'),
-            'delete' => get_string('delete', 'local_slider')
+            'delete' => get_string('delete', 'local_slider'),
+            'rename' => get_string('rename', 'local_slider')
         );
  
         $mform->addElement('select', 'action', get_string('action', 'local_slider'), $actionsarray);
@@ -51,8 +52,12 @@ class managesliders_form extends moodleform {
 
         $mform->addElement('searchableselector', 'name', get_string('slidername', 'local_slider'), $slidersarray);
         $mform->addRule('name', get_string('required'), 'required');
+
+        $mform->addElement('text', 'newname', get_string('newslidername', 'local_slider'), 'size="50"');
+        $mform->setType('newname', PARAM_NOTAGS);
+        $mform->hideIf('newname', 'action', 'neq', 'rename');
         
-        $this->add_action_buttons(false, get_string('sendaction', 'local_slider'));
+        $this->add_action_buttons(true, get_string('sendaction', 'local_slider'));
 
     }
     //Custom validation should be added here

@@ -37,6 +37,7 @@ $string['cancelcreateslider'] = 'Slider creation cancelled';
 $string['successcreateslider'] = 'Slider created successfully';
 $string['successupdateslider'] = 'Slider updated successfully';
 $string['successdeleteslider'] = 'Slider deleted successfully';
+$string['successrenameslider'] = 'Slider renamed successfully';
 
 $string['updateurl'] = 'Update service URL:';
 $string['updateurldesc'] = 'This is the URL to access the External update service';
@@ -47,4 +48,7 @@ $string['managesliderstitle'] = 'Manage sliders';
 $string['action'] = 'Action';
 $string['edit'] = 'edit';
 $string['delete'] = 'delete';
+$string['rename'] = 'rename';
+$string['newslidername'] = 'New slider name';
 $string['sendaction'] = 'Send action';
+$string['error'] = 'Something went wrong with your last request';

@@ -37,6 +37,7 @@ $string['cancelcreateslider'] = 'Creación de slider cancelada';
 $string['successcreateslider'] = 'Slider creado con éxito';
 $string['successupdateslider'] = 'Slider actualizado con éxito';
 $string['successdeleteslider'] = 'Slider borrado con éxito';
+$string['successrenameslider'] = 'Slider renombrado con éxito';
 
 $string['updateurl'] = 'URL del servidio de actualización:';
 $string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización';
@@ -47,4 +48,7 @@ $string['managesliderstitle'] = 'Gestionar sliders';
 $string['action'] = 'Acción';
 $string['edit'] = 'modificar';
 $string['delete'] = 'borrar';
+$string['rename'] = 'renombrar';
+$string['newslidername'] = 'Nuevo nombre del slider';
 $string['sendaction'] = 'Realizar acción';
+$string['error'] = 'Algo falló en su última petición';
