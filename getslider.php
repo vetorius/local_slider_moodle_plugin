@@ -32,12 +32,14 @@ global $DB;
 
 // get slidername parameter
 $slidername = optional_param('slidername', '', PARAM_RAW);
+// $courseid = required_param('courseid', PARAM_INT);
 
 $PAGE->set_url(new moodle_url('/local/slider/getslider.php'));
 
-
 // only logged users can access
 require_login();
+// $context = context_course::instance($courseid);
+// require_capability('local/slider:readsliders',$context);
 
 // get slider data from database
 if ($sliderdata = $DB->get_record('local_slider', array('name'=>$slidername), 'data')) {
@@ -45,7 +47,6 @@ if ($sliderdata = $DB->get_record('local_slider', array('name'=>$slidername), 'd
 } else {
     $jsondata = '{ }';
 }
-
 
 // send mime type and encoding
 @header('Content-Type: application/json; charset=utf-8');

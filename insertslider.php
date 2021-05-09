@@ -72,17 +72,23 @@ if ($CFG->theme == "essential") {
     $PAGE->requires->css(new moodle_url('/local/slider/editorassets/b4/app.css'));
 }
 
-echo $OUTPUT->header();
+
 
 //displays the slider editor if create parameter is 1
 if ($create==1){ 
+    $PAGE->set_heading(get_string('createslidertitle', 'local_slider'));
+    echo $OUTPUT->header();
     echo '<div id="app"></div>';
-}
-if ($slidername!='') {
+} else if ($slidername!='') {
     if ($sliderdata = $DB->get_record('local_slider', array('name'=>$slidername), 'name, data')) {
+        $PAGE->set_heading(get_string('modifyslidertitle', 'local_slider'));
+        echo $OUTPUT->header();
         $mform->set_data($sliderdata);
         echo '<div id="app"></div>';
     }
+} else {
+    $PAGE->set_heading(get_string('insertslidertitle', 'local_slider'));
+        echo $OUTPUT->header();
 }
 //displays the form
 $mform->display();

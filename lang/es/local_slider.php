@@ -31,6 +31,7 @@ $string['indexslidertitle'] = 'Módulo slider NCA';
 
 $string['insertslidertitle'] = 'Insertar nuevo slider';
 $string['createslidertitle'] = 'Crear nuevo slider';
+$string['modifyslidertitle'] = 'Modificar slider';
 $string['slidername'] = 'Nombre del slider';
 $string['sliderjson'] = 'JSON del slider' ;
 $string['cancelcreateslider'] = 'Creación de slider cancelada';
@@ -52,3 +53,6 @@ $string['rename'] = 'renombrar';
 $string['newslidername'] = 'Nuevo nombre del slider';
 $string['sendaction'] = 'Realizar acción';
 $string['error'] = 'Algo falló en su última petición';
+
+$string['slider:readsliders'] = 'leer sliders';
+$string['slider:managesliders'] = 'gestionar sliders';

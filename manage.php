@@ -34,6 +34,8 @@ $PAGE->set_url(new moodle_url('/local/slider/manage.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('managesliderstitle', 'local_slider'));
 
+$PAGE->set_heading(get_string('managesliderstitle', 'local_slider'));
+
 require_login();
 
 // initialize the form

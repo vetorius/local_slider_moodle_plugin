@@ -18,7 +18,8 @@
  */
 
 /**
- * Version details
+ * Capability definitions for the local_slider module 
+ * optional paramenter slidername
  *
  * @package    local_slider
  * @author     Víctor M. Sanchez
@@ -27,8 +28,23 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_slider';
-$plugin->release = 'beta1';
-$plugin->version   = 2021050707;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2018051700;        // Requires this Moodle version
-$plugin->maturity = MATURITY_BETA;
+$capabilities = array(
+    'local/slider:readsliders' => array(
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetype' => array(
+            'manager' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+        ),
+    ),
+    'local/slider:managesliders' => array(
+        'riskbitmask' => RISK_DATALOSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetype' => array(
+            'manager' => CAP_ALLOW
+        )
+    )
+);

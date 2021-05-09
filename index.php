@@ -31,6 +31,8 @@ $PAGE->set_url(new moodle_url('/local/slider/index.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('indexslidertitle', 'local_slider'));
 
+$PAGE->set_heading(get_string('indexslidertitle', 'local_slider'));
+
 require_login();
 
 echo $OUTPUT->header();
