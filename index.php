@@ -27,13 +27,15 @@
 
 require_once(__DIR__. '/../../config.php');
 
+$context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/index.php'));
-$PAGE->set_context(\context_system::instance());
+$PAGE->set_context($context);
 $PAGE->set_title(get_string('indexslidertitle', 'local_slider'));
 
 $PAGE->set_heading(get_string('indexslidertitle', 'local_slider'));
 
 require_login();
+require_capability('local/slider:managesliders', $context);
 
 echo $OUTPUT->header();
 

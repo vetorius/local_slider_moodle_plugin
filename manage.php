@@ -30,13 +30,15 @@ require_once(__DIR__. '/classes/form/managesliders.php');
 
 global $DB;
 
+$context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/manage.php'));
-$PAGE->set_context(\context_system::instance());
+$PAGE->set_context($context);
 $PAGE->set_title(get_string('managesliderstitle', 'local_slider'));
 
 $PAGE->set_heading(get_string('managesliderstitle', 'local_slider'));
 
 require_login();
+require_capability('local/slider:managesliders', $context);
 
 // initialize the form
 $mform = new managesliders_form();

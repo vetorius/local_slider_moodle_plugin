@@ -33,11 +33,13 @@ global $DB;
 $create = optional_param('create', 0, PARAM_INT);
 $slidername = optional_param('name', '', PARAM_RAW);
 
+$context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/insertslider.php'));
-$PAGE->set_context(\context_system::instance());
+$PAGE->set_context($context);
 $PAGE->set_title(get_string('insertslidertitle', 'local_slider'));
 
 require_login();
+require_capability('local/slider:managesliders', $context);
 
 // initialize the form
 $mform = new insertslider_form();
