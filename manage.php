@@ -28,7 +28,8 @@
 require_once(__DIR__. '/../../config.php');
 require_once(__DIR__. '/classes/form/managesliders.php');
 
-global $DB;
+$deleteid = optional_param('deleteid', 0, PARAM_INT);
+$confirm = optional_param('confirm', 0, PARAM_INT);
 
 $context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/manage.php'));
@@ -39,6 +40,22 @@ $PAGE->set_heading(get_string('managesliderstitle', 'local_slider'));
 
 require_login();
 require_capability('local/slider:managesliders', $context);
+
+// delete the slider if confirmed
+if ($confirm && confirm_sesskey()){
+    if ($DB->delete_records('local_slider', array('id'=>$deleteid))) {
+        redirect(new moodle_url('/local/slider/index.php'),
+                get_string('successdeleteslider', 'local_slider'),
+                null,
+                \core\output\notification::NOTIFY_SUCCESS);
+    } else {
+        // if the slider id given doesn't exist returns to index with error message
+        redirect(new moodle_url('/local/slider/index.php'),
+                get_string('error', 'local_slider'),
+                null,
+                \core\output\notification::NOTIFY_ERROR);
+    }
+}
 
 // initialize the form
 $mform = new managesliders_form();
@@ -51,22 +68,39 @@ if ($mform->is_cancelled()) {
 } else if ($fromform = $mform->get_data()) {
     switch ($fromform->action){
         case 'edit':
+            //redirect to insertslider with name to edit
             redirect(new moodle_url('/local/slider/insertslider.php?name=' . $fromform->name));
             break;
 
         case 'delete':
-            $DB->delete_records('local_slider', array('name'=>$fromform->name));
-            redirect(new moodle_url('/local/slider/index.php'), get_string('successdeleteslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
+            // if the slider exists, ask for confirmation
+            if ($recordtodelete = $DB->get_record('local_slider', array('name'=>$fromform->name))){
+                echo $OUTPUT->header();
+                $paramsyes = array('sesskey' => sesskey(), 'confirm' => 1, 'deleteid' => $recordtodelete->id);
+                $paramsno = array();
+                echo $OUTPUT->confirm(get_string('commentdelete', 'local_slider'),
+                                        new moodle_url('/local/slider/manage.php', $paramsyes),
+                                        new moodle_url('/local/slider/index.php', $paramsno));
+                echo $OUTPUT->footer();
+                die();
+            } else {
+                //redirect to index if the slider doesn't exist
+                redirect(new moodle_url('/local/slider/index.php'),
+                get_string('error', 'local_slider'),
+                null,
+                \core\output\notification::NOTIFY_ERROR);
+            }
             break;
+
         case 'rename':
+            // rename the slider
             if ($recordtoupdate = $DB->get_record('local_slider', array('name'=>$fromform->name))){
                 $recordtoupdate->name = $fromform->newname;
                 $DB->update_record('local_slider', $recordtoupdate);
                 redirect(new moodle_url('/local/slider/index.php'), get_string('successrenameslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
             } else {
                 redirect(new moodle_url('/local/slider/index.php'), get_string('error', 'local_slider'),null, \core\output\notification::NOTIFY_ERROR);
-            }
-            
+            }            
             break;
     }
 }

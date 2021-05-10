@@ -56,3 +56,5 @@ $string['error'] = 'Something went wrong with your last request';
 
 $string['slider:readsliders'] = 'read sliders';
 $string['slider:managesliders'] = 'manage sliders';
+
+$string['commentdelete'] = 'Confirm slider deletion?';
