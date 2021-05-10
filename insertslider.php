@@ -28,8 +28,6 @@
 require_once(__DIR__. '/../../config.php');
 require_once(__DIR__. '/classes/form/insertslider.php');
 
-global $DB;
-
 $create = optional_param('create', 0, PARAM_INT);
 $slidername = optional_param('name', '', PARAM_RAW);
 
@@ -55,10 +53,23 @@ if ($mform->is_cancelled()) {
     $recordtoinsert->name = $fromform->name;
     $recordtoinsert->data = $fromform->data;
     if ($sliderdata = $DB->get_record('local_slider', array('name'=>$fromform->name))) {
+        // if the slidername exists, update the record and saves last slider value to slidername+.BCKP
         $recordtoinsert->id = $sliderdata->id;
         $DB->update_record('local_slider', $recordtoinsert);
+        $bckpname = $sliderdata->name . '.BCKP';
+        if ($sliderbckp = $DB->get_record('local_slider', array('name'=>$bckpname))){
+            // update the BCKP record if exists
+            $sliderdata->id = $sliderbckp->id;
+            $sliderdata->name = $bckpname;
+            $DB->update_record('local_slider', $sliderdata);
+        } else {
+            // create new BCKP record
+            $sliderdata->name = $bckpname;
+            $DB->insert_record('local_slider', $sliderdata);
+        }
         redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successupdateslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
     } else {
+        // if slidername doesn't exist creates the record
         $DB->insert_record('local_slider', $recordtoinsert);
         redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successcreateslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
     }
@@ -73,8 +84,6 @@ if ($CFG->theme == "essential") {
     $PAGE->requires->js(new moodle_url('/local/slider/editorassets/b4/chunk-vendors.js'));
     $PAGE->requires->css(new moodle_url('/local/slider/editorassets/b4/app.css'));
 }
-
-
 
 //displays the slider editor if create parameter is 1
 if ($create==1){ 
