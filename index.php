@@ -43,16 +43,21 @@ echo $OUTPUT->header();
 $createslider = new moodle_url('/local/slider/insertslider.php?create=1');
 $insertslider = new moodle_url('/local/slider/insertslider.php');
 $managesliders = new moodle_url('/local/slider/manage.php');
+$manual = new moodle_url('/local/slider/manual.php');
 
 echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
+echo '<a href="' . $manual . '" class="btn btn-primary">' . get_string('manualslidertitle', 'local_slider') . '</a>&nbsp;';
 
-/*
+
 echo '<hr/>';
 echo '<pre>';
-var_dump($CFG);
+// var_dump($CFG);
+
+echo '<p>' . time() . '</p>';
+echo '<p>' . userdate(time(), '%d %B %Y, %H:%M:%S') . '</p>';
 echo '</pre>';
-*/
+
 
 echo $OUTPUT->footer();
