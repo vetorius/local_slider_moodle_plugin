@@ -51,13 +51,35 @@ echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('m
 echo '<a href="' . $manual . '" class="btn btn-primary">' . get_string('manualslidertitle', 'local_slider') . '</a>&nbsp;';
 
 
-echo '<hr/>';
-echo '<pre>';
-// var_dump($CFG);
+/**
+ * 
+ * A partir de aquí y antes de mostrar el footer hay código de chequeo para probar cosas
+ * 
+ */
 
+/* echo '<hr/>';
+echo '<pre>';
+var_dump($CFG);
 echo '<p>' . time() . '</p>';
 echo '<p>' . userdate(time(), '%d %B %Y, %H:%M:%S') . '</p>';
-echo '</pre>';
+echo '</pre>'; */
+
+if ($sliders = $DB->get_records('local_slider', null, '', 'id, name, timecreated, timemodified')){
+    echo '<div class="row"><table class="table table-sm">';
+    echo '<thead><tr><th>id</th><th>name</th><th>timecreated</th><th>timemodified</th></tr></thead>';
+    foreach ($sliders as $key => $value) {
+        $created = userdate($value->timecreated, get_string('timeformat', 'local_slider'));
+        $modified = userdate($value->timemodified, get_string('timeformat', 'local_slider'));
+        echo "<tr><td>$value->id</td><td>$value->name</td><td>$created</td><td>$modified</td></tr>";
+    }
+    echo '</table></div>';
+}
+$sql = 'SELECT MAX(timemodified) AS lastmodified FROM {local_slider}';
+if ($data = $DB->get_record_sql($sql)){
+    echo '<div class="row"><p>La última fecha de actualización es: ';
+    echo userdate($data->lastmodified, get_string('timeformat', 'local_slider'));
+    echo '</p></div>';
+}
 
 
 echo $OUTPUT->footer();

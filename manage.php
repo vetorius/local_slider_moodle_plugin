@@ -96,6 +96,7 @@ if ($mform->is_cancelled()) {
             // rename the slider
             if ($recordtoupdate = $DB->get_record('local_slider', array('name'=>$fromform->name))){
                 $recordtoupdate->name = $fromform->newname;
+                $recordtoupdate->timemodified = time();
                 $DB->update_record('local_slider', $recordtoupdate);
                 redirect(new moodle_url('/local/slider/index.php'), get_string('successrenameslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
             } else {

@@ -59,3 +59,4 @@ $string['slider:readsliders'] = 'leer sliders';
 $string['slider:managesliders'] = 'gestionar sliders';
 
 $string['commentdelete'] = '¿Confirma que quiere borrar el slider?';
+$string['timeformat'] = '%d %m %Y, %H:%M:%S';
