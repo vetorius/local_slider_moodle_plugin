@@ -38,7 +38,7 @@ class insertslider_form extends moodleform {
  
         $mform->addElement('text', 'name', get_string('slidername', 'local_slider'), 'size="50"');
         $mform->setType('name', PARAM_NOTAGS);
-        $mform->setDefault('name', '');
+        $mform->addRule('name', get_string('required'), 'required');
 
         $mform->addElement('textarea', 'data', get_string('sliderjson', 'local_slider'), 'id= "sliderjson" wrap="virtual" rows="10" cols="80"');
         $mform->setType('data', PARAM_RAW);

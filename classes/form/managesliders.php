@@ -64,6 +64,11 @@ class managesliders_form extends moodleform {
     }
     //Custom validation should be added here
     function validation($data, $files) {
-        return array();
+        $errors = array();
+        // if rename option is selected, newname is required
+        if ($data['action'] == 'rename' && empty($data['newname'])){
+            $errors['newname'] = get_string('nonewnameerror', 'local_slider');
+        }
+        return $errors;
     }
 }

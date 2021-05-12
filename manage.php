@@ -63,7 +63,7 @@ $mform = new managesliders_form();
 //Form processing and displaying is done here
 if ($mform->is_cancelled()) {
     //Go back to main page
-    redirect($CFG->wwwroot . '/local/slider/index.php');
+    redirect(new moodle_url('/local/slider/index.php', get_string('cancel', 'local_slider'));
 
 } else if ($fromform = $mform->get_data()) {
     switch ($fromform->action){

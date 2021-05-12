@@ -35,6 +35,7 @@ $string['modifyslidertitle'] = 'Modify slider';
 $string['manualslidertitle'] = 'Slider plugin manual';
 $string['slidername'] = 'Slider name';
 $string['sliderjson'] = 'Slider JSON';
+$string['cancel'] = 'Operation cancelled';
 $string['cancelcreateslider'] = 'Slider creation cancelled';
 $string['successcreateslider'] = 'Slider created successfully';
 $string['successupdateslider'] = 'Slider updated successfully';
@@ -54,6 +55,7 @@ $string['rename'] = 'rename';
 $string['newslidername'] = 'New slider name';
 $string['sendaction'] = 'Send action';
 $string['error'] = 'Something went wrong with your last request';
+$string['nonewnameerror'] = 'You should give a new name to rename a slider';
 
 $string['slider:readsliders'] = 'read sliders';
 $string['slider:managesliders'] = 'manage sliders';
