@@ -64,7 +64,7 @@ echo '<p>' . time() . '</p>';
 echo '<p>' . userdate(time(), '%d %B %Y, %H:%M:%S') . '</p>';
 echo '</pre>'; */
 
-if ($sliders = $DB->get_records('local_slider', null, '', 'id, name, timecreated, timemodified')){
+if ($sliders = $DB->get_records('local_slider', null, 'name', 'id, name, timecreated, timemodified')){
     echo '<div class="row"><table class="table table-sm">';
     echo '<thead><tr><th>id</th><th>name</th><th>timecreated</th><th>timemodified</th></tr></thead>';
     foreach ($sliders as $key => $value) {

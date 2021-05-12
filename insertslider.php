@@ -52,35 +52,27 @@ if ($mform->is_cancelled()) {
     $recordtoinsert = new stdClass();
     $recordtoinsert->name = $fromform->name;
     $recordtoinsert->data = $fromform->data;
-/**
- * TO-DO cambiar la forma de hacer la actualización.
- * Si el registro existe y tambien tiene backup,
- * eliminar primero el backup y luego actualizar ambos.
- * De esa forma el valor de timemodified es relevante.
- */
-if ($sliderdata = $DB->get_record('local_slider', array('name'=>$fromform->name))) {
-        // if the slidername exists, update the record and saves last slider value to slidername+.BCKP
-        $recordtoinsert->id = $sliderdata->id;
+
+    if ($lastsliderdata = $DB->get_record('local_slider', array('name'=>$fromform->name))) {
+        // if the slidername exists, update the record and saves a BACKUP record with name slidername+.BACKUP
+        // first of all delete previous BACKUP record if exists
+        $bckpname = $lastsliderdata->name . '.BACKUP';
+        if ($lastbackup = $DB->get_record('local_slider', array('name'=>$bckpname))){
+            $DB->delete_records('local_slider', array('id'=>$lastbackup->id));
+        }
+        // update last slider data with new data
+        $recordtoinsert->id = $lastsliderdata->id;
         $recordtoinsert->timemodified = time();
         $DB->update_record('local_slider', $recordtoinsert);
-        $bckpname = $sliderdata->name . '.BCKP';
-        if ($sliderbckp = $DB->get_record('local_slider', array('name'=>$bckpname))){
-            // update the BCKP record if exists
-            $sliderdata->id = $sliderbckp->id;
-            $sliderdata->name = $bckpname;
-            $sliderdata->timemodified = time();
-            $DB->update_record('local_slider', $sliderdata);
-        } else {
-            // create new BCKP record
-            $sliderdata->name = $bckpname;
-            $sliderdata->timemodified = time();
-            $DB->insert_record('local_slider', $sliderdata);
-        }
+        // create new BACKUP record with last slider data
+        $lastsliderdata->name = $bckpname;
+        $DB->insert_record('local_slider', $lastsliderdata);
+        // redirect to index
         redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successupdateslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
     } else {
         // if slidername doesn't exist creates the record
         $recordtoinsert->timecreated = time();
-        $recordtoinsert->timemodified = $recordtoinsert->timecreated;
+        $recordtoinsert->timemodified = time();
         $DB->insert_record('local_slider', $recordtoinsert);
         redirect($CFG->wwwroot . '/local/slider/index.php', get_string('successcreateslider', 'local_slider'),null, \core\output\notification::NOTIFY_SUCCESS);
     }
@@ -102,10 +94,10 @@ if ($create==1){
     echo $OUTPUT->header();
     echo '<div id="app"></div>';
 } else if ($slidername!='') {
-    if ($sliderdata = $DB->get_record('local_slider', array('name'=>$slidername), 'name, data')) {
+    if ($lastsliderdata = $DB->get_record('local_slider', array('name'=>$slidername), 'name, data')) {
         $PAGE->set_heading(get_string('modifyslidertitle', 'local_slider'));
         echo $OUTPUT->header();
-        $mform->set_data($sliderdata);
+        $mform->set_data($lastsliderdata);
         echo '<div id="app"></div>';
     }
 } else {
