@@ -62,3 +62,6 @@ $string['slider:managesliders'] = 'manage sliders';
 
 $string['commentdelete'] = 'Confirm slider deletion?';
 $string['timeformat'] = '%d %m %Y, %H:%M:%S';
+
+$string['timecreated'] = 'Creation time';
+$string['timemodified'] = 'Modification time';

@@ -26,6 +26,7 @@
  */
 
 require_once(__DIR__. '/../../config.php');
+require_once(__DIR__. '/classes/manage_table.php');
 
 $context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/index.php'));
@@ -64,7 +65,7 @@ echo '<p>' . time() . '</p>';
 echo '<p>' . userdate(time(), '%d %B %Y, %H:%M:%S') . '</p>';
 echo '</pre>'; */
 
-if ($sliders = $DB->get_records('local_slider', null, 'name', 'id, name, timecreated, timemodified')){
+/* if ($sliders = $DB->get_records('local_slider', null, 'name', 'id, name, timecreated, timemodified')){
     echo '<div class="row"><table class="table table-sm">';
     echo '<thead><tr><th>id</th><th>name</th><th>timecreated</th><th>timemodified</th></tr></thead>';
     foreach ($sliders as $key => $value) {
@@ -73,7 +74,10 @@ if ($sliders = $DB->get_records('local_slider', null, 'name', 'id, name, timecre
         echo "<tr><td>$value->id</td><td>$value->name</td><td>$created</td><td>$modified</td></tr>";
     }
     echo '</table></div>';
-}
+} */
+    $table = new local_slider_manage_table('slidertable');
+    $table->display();
+
 $sql = 'SELECT MAX(timemodified) AS lastmodified FROM {local_slider}';
 if ($data = $DB->get_record_sql($sql)){
     echo '<div class="row"><p>La última fecha de actualización es: ';
