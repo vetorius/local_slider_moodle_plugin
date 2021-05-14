@@ -673,6 +673,12 @@ table.footable > tbody > tr.footable-detail-row > th {
 .fooicon-stats:before {
 	content: "\f080";
 }
+.fooicon-clone:before {
+	content: "\f0c5";
+}
+.fooicon-pdf:before {
+	content: "\f1c1";
+}
 
 table.footable > thead > tr.footable-filtering > th {
 	border-bottom-width: 1px;

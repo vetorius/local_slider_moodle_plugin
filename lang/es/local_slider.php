@@ -60,5 +60,5 @@ $string['nonewnameerror'] = 'Tiene que proporcionar un nuevo nombre para renombr
 $string['slider:readsliders'] = 'leer sliders';
 $string['slider:managesliders'] = 'gestionar sliders';
 
-$string['commentdelete'] = '¿Confirma que quiere borrar el slider?';
+$string['commentdelete'] = '¿Está totalmente seguro de que quiere borrar el slider con nombre {$a}?';
 $string['timeformat'] = '%d %m %Y, %H:%M:%S';

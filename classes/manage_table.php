@@ -50,22 +50,13 @@ class local_slider_manage_table {
 
     /**
      * Constructor.
-     * @param string $id what to put in the id="" attribute.
+     * @param string $id what to put in the table id="" attribute.
      */
     public function __construct($id) {
         global $DB;
 
         $this->sliders = $DB->get_records('local_slider', null, 'name', 'id, name, timecreated, timemodified');
         $this->id = $id;
-    }
-
-    /**
-     * Use this to add class="" attributes to the table. You get the rolecap by
-     * default.
-     * @param array $classnames of class names.
-     */
-    public function add_classes($classnames) {
-        $this->classes = array_unique(array_merge($this->classes, $classnames));
     }
 
     /**
@@ -93,13 +84,39 @@ class local_slider_manage_table {
             $created = userdate($slider->timecreated, get_string('timeformat', 'local_slider'));
             $modified = userdate($slider->timemodified, get_string('timeformat', 'local_slider'));
             $contents = "<td>$slider->name</td><td>$created</td><td>$modified</td>";
-            $contents .= "<td>&nbsp</td>";
+            $contents .= "<td>" . $this->create_buttons($slider->id) . "</td>";
 
             echo html_writer::tag('tr', $contents, $rowattributes);
         }
 
         // End of the table.
         echo "</tbody>\n</table>\n</div>";
+    }
+
+    /**
+     * Create the edition buttons
+     */
+    private function create_buttons($id){
+
+        $buttons = '';
+        //add edit button
+        $editLink = '#'; //new moodle_url("/local/slider/...");
+        $buttons .= '<a href="' . $editLink . '" class="btn btn-primary">';
+        $buttons .= '<span class="fooicon fooicon-pencil"></span></a>&nbsp;';
+        //add duplicate button
+        $copyLink = '#'; //new moodle_url("/local/slider/...");
+        $buttons .= '<a href="' . $copyLink . '" class="btn btn-primary">';
+        $buttons .= '<span class="fooicon fooicon-clone"></span></a>&nbsp;';
+        //generate pdf button
+        $pdfLink = '#'; //new moodle_url("/local/slider/...");
+        $buttons .= '<a href="' . $copyLink . '" class="btn btn-primary">';
+        $buttons .= '<span class="fooicon fooicon-pdf"></span></a>&nbsp;';
+        //add delete button
+        $deleteLink = new moodle_url("/local/slider/delete.php?id=$id");
+        $buttons .= '<a href="' . $deleteLink . '" class="btn btn-danger">';
+        $buttons .= '<span class="fooicon fooicon-trash"></span></a>&nbsp;';
+
+        return $buttons;
     }
 
 
