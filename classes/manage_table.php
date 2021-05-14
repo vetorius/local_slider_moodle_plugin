@@ -43,10 +43,10 @@ class local_slider_manage_table {
     protected $id;
 
     /** Added to the class="" attribute on output. */
-    protected $classes = array('table table-sm table-striped');
+    protected $classes = array('table');
 
     /** Default number of capabilities in the table for the search UI to be shown. */
-    const NUM_SLIDER_FOR_SEARCH = 12;
+    const NUM_SLIDER_FOR_SEARCH = 3;
 
     /**
      * Constructor.
@@ -73,9 +73,14 @@ class local_slider_manage_table {
      */
     public function display() {
         if (count($this->sliders) > self::NUM_SLIDER_FOR_SEARCH) {
-            // @TODO javascript with search if we have a lot of SLIDERS
+            global $PAGE;
+            
+            $PAGE->requires->js(new moodle_url('https://code.jquery.com/jquery-3.4.1.js'));      
+            $PAGE->requires->js(new moodle_url('/local/slider/js/footable.min.js'));
+            $PAGE->requires->js(new moodle_url('/local/slider/js/slider-selector.js'));
         }
-        echo '<table class="' . implode(' ', $this->classes) . '" id="' . $this->id . '">' . "\n<thead>\n<tr>";
+        echo '<div class="container"><table class="' . implode(' ', $this->classes) . '" id="' . $this->id . '">';
+        echo "\n<thead>\n<tr>";
         echo '<th>' . get_string('slidername', 'local_slider') . '</th>';
         echo '<th>' . get_string('timecreated', 'local_slider') . '</th>';
         echo '<th>' . get_string('timemodified', 'local_slider') . '</th>';
@@ -87,13 +92,14 @@ class local_slider_manage_table {
             $rowattributes = array(); 
             $created = userdate($slider->timecreated, get_string('timeformat', 'local_slider'));
             $modified = userdate($slider->timemodified, get_string('timeformat', 'local_slider'));
-            $contents = "<td>$slider->name</td><td>$created</td><td>$modified</td><td>&nbsp</td>";
+            $contents = "<td>$slider->name</td><td>$created</td><td>$modified</td>";
+            $contents .= "<td>&nbsp</td>";
 
             echo html_writer::tag('tr', $contents, $rowattributes);
         }
 
         // End of the table.
-        echo "</tbody>\n</table>\n";
+        echo "</tbody>\n</table>\n</div>";
     }
 
 
