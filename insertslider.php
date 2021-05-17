@@ -29,7 +29,7 @@ require_once(__DIR__. '/../../config.php');
 require_once(__DIR__. '/classes/form/insertslider.php');
 
 $create = optional_param('create', 0, PARAM_INT);
-$slidername = optional_param('name', '', PARAM_RAW);
+$sliderid = optional_param('id', 0 , PARAM_INT);
 
 $context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/insertslider.php'));
@@ -93,8 +93,8 @@ if ($create==1){
     $PAGE->set_heading(get_string('createslidertitle', 'local_slider'));
     echo $OUTPUT->header();
     echo '<div id="app"></div>';
-} else if ($slidername!='') {
-    if ($lastsliderdata = $DB->get_record('local_slider', array('name'=>$slidername), 'name, data')) {
+} else if ($sliderid!= 0) {
+    if ($lastsliderdata = $DB->get_record('local_slider', array('id'=>$sliderid), 'name, data')) {
         $PAGE->set_heading(get_string('modifyslidertitle', 'local_slider'));
         echo $OUTPUT->header();
         $mform->set_data($lastsliderdata);
@@ -102,7 +102,7 @@ if ($create==1){
     }
 } else {
     $PAGE->set_heading(get_string('insertslidertitle', 'local_slider'));
-        echo $OUTPUT->header();
+    echo $OUTPUT->header();
 }
 //displays the form
 $mform->display();

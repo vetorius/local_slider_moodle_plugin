@@ -18,17 +18,14 @@
  */
 
 /**
- * Version details
+ * topdf returns a pdf file with the slider contents
  *
  * @package    local_slider
  * @author     Víctor M. Sanchez
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+require_once(__DIR__. '/../../config.php');
+require_once(__DIR__. '/classes/form/managesliders.php');
 
-$plugin->component = 'local_slider';
-$plugin->release = 'beta1';
-$plugin->version   = 2021050710;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2018051700;        // Requires this Moodle version
-$plugin->maturity = MATURITY_BETA;
+$sliderid = required_param('id', PARAM_INT);

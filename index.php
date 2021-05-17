@@ -26,6 +26,7 @@
  */
 
 require_once(__DIR__. '/../../config.php');
+require_once(__DIR__. '/classes/manage_table.php');
 
 $context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/index.php'));
@@ -37,25 +38,22 @@ $PAGE->set_heading(get_string('indexslidertitle', 'local_slider'));
 require_login();
 require_capability('local/slider:managesliders', $context);
 
+$PAGE->requires->css(new moodle_url('/local/slider/css/footable.standalone.min.css'));
+
 echo $OUTPUT->header();
 
 //displays the slider editor
 $createslider = new moodle_url('/local/slider/insertslider.php?create=1');
 $insertslider = new moodle_url('/local/slider/insertslider.php');
-$managesliders = new moodle_url('/local/slider/manage.php');
+//$managesliders = new moodle_url('/local/slider/manage.php');
 $manual = new moodle_url('/local/slider/manual.php');
 
+echo '<div class="row">';
 echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
-echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
+// echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $manual . '" class="btn btn-primary">' . get_string('manualslidertitle', 'local_slider') . '</a>&nbsp;';
-
-
-/**
- * 
- * A partir de aquí y antes de mostrar el footer hay código de chequeo para probar cosas
- * 
- */
+echo '</div><hr/>';
 
 /* echo '<hr/>';
 echo '<pre>';
@@ -64,16 +62,11 @@ echo '<p>' . time() . '</p>';
 echo '<p>' . userdate(time(), '%d %B %Y, %H:%M:%S') . '</p>';
 echo '</pre>'; */
 
-if ($sliders = $DB->get_records('local_slider', null, 'name', 'id, name, timecreated, timemodified')){
-    echo '<div class="row"><table class="table table-sm">';
-    echo '<thead><tr><th>id</th><th>name</th><th>timecreated</th><th>timemodified</th></tr></thead>';
-    foreach ($sliders as $key => $value) {
-        $created = userdate($value->timecreated, get_string('timeformat', 'local_slider'));
-        $modified = userdate($value->timemodified, get_string('timeformat', 'local_slider'));
-        echo "<tr><td>$value->id</td><td>$value->name</td><td>$created</td><td>$modified</td></tr>";
-    }
-    echo '</table></div>';
-}
+
+$table = new local_slider_manage_table('slidertable');
+$table->display();
+
+
 $sql = 'SELECT MAX(timemodified) AS lastmodified FROM {local_slider}';
 if ($data = $DB->get_record_sql($sql)){
     echo '<div class="row"><p>La última fecha de actualización es: ';
@@ -81,5 +74,9 @@ if ($data = $DB->get_record_sql($sql)){
     echo '</p></div>';
 }
 
+$currentlang = current_language();
+echo '<div class="row"><p>El idioma actual es: ';
+echo $currentlang;
+echo '</p></div>';
 
 echo $OUTPUT->footer();

@@ -33,6 +33,7 @@ $string['insertslidertitle'] = 'Insertar nuevo slider';
 $string['createslidertitle'] = 'Crear nuevo slider';
 $string['modifyslidertitle'] = 'Modificar slider';
 $string['manualslidertitle'] = 'Manual del plugin Slider';
+$string['deleteslidertitle'] = 'Eliminar slider';
 $string['slidername'] = 'Nombre del slider';
 $string['sliderjson'] = 'JSON del slider' ;
 $string['cancel'] = 'Operación cancelada';
@@ -60,5 +61,9 @@ $string['nonewnameerror'] = 'Tiene que proporcionar un nuevo nombre para renombr
 $string['slider:readsliders'] = 'leer sliders';
 $string['slider:managesliders'] = 'gestionar sliders';
 
-$string['commentdelete'] = '¿Confirma que quiere borrar el slider?';
+$string['commentdelete'] = '¿Está totalmente seguro de que quiere borrar el slider con nombre {$a}?';
 $string['timeformat'] = '%d %m %Y, %H:%M:%S';
+
+$string['timecreated'] = 'Creado en';
+$string['timemodified'] = 'Modificado en';
+$string['actions'] = 'Acciones';
