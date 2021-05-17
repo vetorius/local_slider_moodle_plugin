@@ -26,18 +26,22 @@
 
 $functions = array(
     'local_slider_get_sliders' => array(
-        'classname'   => 'local_slider_external',
-        'methodname'  => 'get_sliders',
-        'classpath'   => 'local/slider/externallib.php',
-        'description' => 'Return array of sliders.',
-        'type'        => 'read',
+        'classname'     => 'local_slider_external',
+        'methodname'    => 'get_sliders',
+        'classpath'     => 'local/slider/externallib.php',
+        'description'   => 'Return array of sliders.',
+        'type'          => 'read',
+        'ajax'          => true,
+        'capabilities'  => 'local/slider:readsliders',
     ),
     'local_slider_get_new_sliders' => array(
-        'classname'   => 'local_slider_external',
-        'methodname'  => 'get_new_sliders',
-        'classpath'   => 'local/slider/externallib.php',
-        'description' => 'Return array of sliders newer than a given date. Requires a date as a parameter',
-        'type'        => 'read',
+        'classname'     => 'local_slider_external',
+        'methodname'    => 'get_new_sliders',
+        'classpath'     => 'local/slider/externallib.php',
+        'description'   => 'Return array of sliders newer than a given date. Requires a date as a parameter',
+        'type'          => 'read',
+        'ajax'          => true,
+        'capabilities'  => 'local/slider:readsliders',
     ),
 );
 
@@ -46,6 +50,7 @@ $services = array(
     'Slider API service'  => array(
         'functions' => array (  'local_slider_get_sliders',
                                 'local_slider_get_new_sliders'),
+        'requiredcapability' => 'local/slider:readsliders',
         'restrictedusers' => 0,
         'enabled' => 1,
         'shortname' => 'Slider',

@@ -43,7 +43,9 @@ $string['successupdateslider'] = 'Slider actualizado con éxito';
 $string['successdeleteslider'] = 'Slider borrado con éxito';
 $string['successrenameslider'] = 'Slider renombrado con éxito';
 
-$string['updateurl'] = 'URL del servidio de actualización:';
+$string['enableupdate'] = 'Habilitar la actualización:';
+$string['enableupdatedesc'] = 'Habilita la actualización de sliders desde un repositorio central.';
+$string['updateurl'] = 'URL del servicio de actualización:';
 $string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización';
 $string['apikey'] = 'API Key:';
 $string['apikeydesc'] = 'Es la clave para acceder a la API externa de actualización';

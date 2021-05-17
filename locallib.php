@@ -68,6 +68,53 @@ function compress_records($dataarray) {
 }
 
 /**
+ * Decompress records from API request and create an array
+ * from the incoming data as a tab+newline separated string
+ * 
+ * @param string $string compressed tab+newline separated string data
+ * 
+ * @return array a multidimensional array with field names in the first row
+ */
+function decompress_records($string){
+
+    $data = gzdecode($string);
+
+    $result = array();
+
+    foreach (explode("\n", $data) as $row) {
+        $result[] = explode("\t", $row);
+    }
+
+    return $result;    
+}
+
+/**
+ * Create an associative data array from a multidimentional array.
+ * The first row represents the names for association
+ * 
+ * @param array $data
+ * 
+ * @return array asociative array, with the first row of $data as the names for association
+ */
+function associate_data($data) {
+    $associations = array_shift($data);
+
+    $associativeArray = array();
+
+    foreach ($data as $row) {
+        $dataBlock = array();
+        $index = 0;
+        foreach ($row as $element) {
+            $dataBlock[$associations[$index++]] = $element;
+        }
+
+        $associativeArray[] = $dataBlock;
+    }
+
+    return $associativeArray;
+}
+
+/**
  * Returns an array with all the data in local_slider table
  * 
  * @return array The response of the database request
@@ -97,4 +144,33 @@ function get_new_slider_data($date){
     $sliders = $DB->get_records_sql($sql, $params);
 
     return $sliders;
+}
+
+/**
+ * Request the web service to get the data
+ * 
+ * @param string $functionname name of the remote function
+ * @param array $params parameters passed to the remote function 
+ * 
+ * @return array The response of the webservice
+ */
+function call_api($functionname, $params=array()){
+
+    $apiurl = get_config('local_slider', 'updateurl');
+    $apikey = get_config('local_slider', 'apikey');
+    echo '<p>ejecuntando call_api</p>';
+    $serverurl = $apiurl . '/webservice/xmlrpc/server.php'. '?wstoken=' . $apikey;
+//    require_once(dirname(__FILE__) . '/classes/curl.php');
+    $myapi = new curl;
+    $post = xmlrpc_encode_request($functionname, $params);
+    echo $serverurl . '<hr/>';
+    var_dump($post);
+    $response = $myapi->post($serverurl, $post);
+    $resp = xmlrpc_decode($response);
+    echo  '<hr/>' . $response . '<hr/>';
+    // decompress raw data
+    // $data = decompress_records($resp['data']);
+    // $sliders = associate_data($data);
+
+    return $resp;
 }
