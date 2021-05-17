@@ -9,6 +9,8 @@ $(function($){
         "filtering": {
 			"enabled": true,
             "delay": 500,
+            "focus": true,
+            "min": 3,
 		},
     });
 });

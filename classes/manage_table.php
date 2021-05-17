@@ -75,7 +75,7 @@ class local_slider_manage_table {
         echo '<th>' . get_string('slidername', 'local_slider') . '</th>';
         echo '<th>' . get_string('timecreated', 'local_slider') . '</th>';
         echo '<th>' . get_string('timemodified', 'local_slider') . '</th>';
-        echo '<th>' . 'tools' . '</th>';
+        echo '<th data-filterable="false">' . get_string('actions', 'local_slider') . '</th>';
         // add more columns
         echo "</tr>\n</thead>\n<tbody>\n";
 
@@ -100,16 +100,16 @@ class local_slider_manage_table {
 
         $buttons = '';
         //add edit button
-        $editLink = '#'; //new moodle_url("/local/slider/...");
+        $editLink = new moodle_url("/local/slider/insertslider.php?id=$id");
         $buttons .= '<a href="' . $editLink . '" class="btn btn-primary">';
         $buttons .= '<span class="fooicon fooicon-pencil"></span></a>&nbsp;';
         //add duplicate button
-        $copyLink = '#'; //new moodle_url("/local/slider/...");
+        $copyLink = new moodle_url("/local/slider/duplicateslider.php?id=$id");
         $buttons .= '<a href="' . $copyLink . '" class="btn btn-primary">';
         $buttons .= '<span class="fooicon fooicon-clone"></span></a>&nbsp;';
         //generate pdf button
         $pdfLink = '#'; //new moodle_url("/local/slider/...");
-        $buttons .= '<a href="' . $copyLink . '" class="btn btn-primary">';
+        $buttons .= '<a href="' . $pdfLink . '" class="btn btn-primary" disabled>';
         $buttons .= '<span class="fooicon fooicon-pdf"></span></a>&nbsp;';
         //add delete button
         $deleteLink = new moodle_url("/local/slider/delete.php?id=$id");

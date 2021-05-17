@@ -45,13 +45,13 @@ echo $OUTPUT->header();
 //displays the slider editor
 $createslider = new moodle_url('/local/slider/insertslider.php?create=1');
 $insertslider = new moodle_url('/local/slider/insertslider.php');
-$managesliders = new moodle_url('/local/slider/manage.php');
+//$managesliders = new moodle_url('/local/slider/manage.php');
 $manual = new moodle_url('/local/slider/manual.php');
 
 echo '<div class="row">';
 echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
-echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
+// echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $manual . '" class="btn btn-primary">' . get_string('manualslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '</div><hr/>';
 
@@ -73,5 +73,10 @@ if ($data = $DB->get_record_sql($sql)){
     echo userdate($data->lastmodified, get_string('timeformat', 'local_slider'));
     echo '</p></div>';
 }
+
+$currentlang = current_language();
+echo '<div class="row"><p>El idioma actual es: ';
+echo $currentlang;
+echo '</p></div>';
 
 echo $OUTPUT->footer();
