@@ -67,3 +67,4 @@ $string['timeformat'] = '%d %m %Y, %H:%M:%S';
 $string['timecreated'] = 'Creation time';
 $string['timemodified'] = 'Modification time';
 $string['actions'] = 'Actions';
+$string['downloadbackup'] = 'Download backup';

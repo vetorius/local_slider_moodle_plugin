@@ -46,12 +46,14 @@ echo $OUTPUT->header();
 $createslider = new moodle_url('/local/slider/insertslider.php?create=1');
 $insertslider = new moodle_url('/local/slider/insertslider.php');
 //$managesliders = new moodle_url('/local/slider/manage.php');
+//$downloadsliders = new moodle_url('/local/slider/test.php');
 $manual = new moodle_url('/local/slider/manual.php');
 
 echo '<div class="row">';
 echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
-// echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
+//echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
+//echo '<a href="' . $downloadsliders . '" class="btn btn-primary" target="_blank">' . get_string('downloadbackup', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $manual . '" class="btn btn-primary">' . get_string('manualslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '</div><hr/>';
 
@@ -70,7 +72,7 @@ $table->display();
 $sql = 'SELECT MAX(timemodified) AS lastmodified FROM {local_slider}';
 if ($data = $DB->get_record_sql($sql)){
     echo '<div class="row"><p>La última fecha de actualización es: ';
-    echo userdate($data->lastmodified, get_string('timeformat', 'local_slider'));
+    echo $data->lastmodified;
     echo '</p></div>';
 }
 
