@@ -158,19 +158,17 @@ function call_api($functionname, $params=array()){
 
     $apiurl = get_config('local_slider', 'updateurl');
     $apikey = get_config('local_slider', 'apikey');
-    echo '<p>ejecuntando call_api</p>';
-    $serverurl = $apiurl . '/webservice/xmlrpc/server.php'. '?wstoken=' . $apikey;
-//    require_once(dirname(__FILE__) . '/classes/curl.php');
-    $myapi = new curl;
-    $post = xmlrpc_encode_request($functionname, $params);
-    echo $serverurl . '<hr/>';
-    var_dump($post);
-    $response = $myapi->post($serverurl, $post);
-    $resp = xmlrpc_decode($response);
-    echo  '<hr/>' . $response . '<hr/>';
-    // decompress raw data
-    // $data = decompress_records($resp['data']);
-    // $sliders = associate_data($data);
 
-    return $resp;
+    $serverurl = $apiurl . '/webservice/rest/server.php';
+    require_once(dirname(__FILE__) . '/classes/MoodleRest.php');
+
+    $moodlerest = new MoodleRest($serverurl, $apikey);
+
+    $response = $moodlerest->request($functionname, $params);
+
+    // decompress raw data
+    $data = decompress_records(base64_decode($response['data']));
+    $sliders = associate_data($data);
+
+    return $sliders;
 }
