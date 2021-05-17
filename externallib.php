@@ -27,9 +27,6 @@ require_once("$CFG->libdir/externallib.php");
 require_once(dirname(__FILE__)."/locallib.php");
 //require_once("$CFG->libdir/weblib.php");
 
-define('DEBUG_QUERIES', true);
-define('DEBUG_TRACE', true);
-
 class local_slider_external extends external_api {
     
     public static function get_sliders_parameters() {
@@ -39,18 +36,14 @@ class local_slider_external extends external_api {
 
     public static function get_sliders() {		
  
-        if(DEBUG_TRACE){error_log('get_certificates_by_email(): function called');}
-        
-        if(DEBUG_TRACE){error_log('validating parameters');}
         //Parameter validation
         //REQUIRED
-        $params = self::validate_parameters(self::get_certificates_by_email_parameters(), array());
-
-
+        $params = self::validate_parameters(self::get_sliders_parameters(), array());
         $allsliders = compress_records(get_slider_data());
-        
+        $message = base64_encode($allsliders);
+
         $results = [
-            'data' => $allsliders,
+            'data' => $message,
         ];
         return $results;
     }
@@ -59,23 +52,29 @@ class local_slider_external extends external_api {
         return 
             new external_single_structure(
                 array(
-                    'data' => new external_value(PARAM_RAW, 'All slider data as a compressed array'),
+                    'data' => new external_value(PARAM_TEXT, 'All slider data as a compressed array'),
                 )
             );
     }
     
     public static function get_new_sliders_parameters() {
         return new external_function_parameters(
-            array('date' => new external_value(PARAM_INT, 'date', VALUE_REQUIRED))
+            array('date' => new external_value(PARAM_INT, 'The date to return sliders from', VALUE_REQUIRED))
         );
     }
 
     public static function get_new_sliders($date) {		
         
+        //Parameter validation
+        //REQUIRED
+        $params = self::validate_parameters(self::get_new_sliders_parameters(),
+                array('date'=> $date));
+
         $newsliders = compress_records(get_new_slider_data($date));
-        
+        $message = base64_encode($newsliders);
+
         $results = [
-            'data' => $newsliders,           
+            'data' => $message,
         ];
         return $results;
     }
@@ -84,7 +83,7 @@ class local_slider_external extends external_api {
         return 
         new external_single_structure(
             array(
-                'data' => new external_value(PARAM_RAW, 'All slider data as a compressed array'),
+                'data' => new external_value(PARAM_TEXT, 'All slider data as a compressed array'),
             )
         );
     }
