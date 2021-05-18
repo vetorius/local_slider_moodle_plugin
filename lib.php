@@ -27,3 +27,26 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Add link into navigation drawer if user has manageslider capability
+ *      
+ * @param global_navigation $root Node representing the global navigation tree.
+ */
+function local_slider_extend_navigation(global_navigation $root) {
+
+    if (!has_capability('local/slider:managesliders', \context_system::instance())) {
+        return;
+    }
+    $node = navigation_node::create(
+        get_string('menutext', 'local_slider'),
+        new moodle_url('/local/slider/index.php'),
+        navigation_node::TYPE_CUSTOM,
+        null,
+        null,
+        new pix_icon('e/split_cells', '')
+    );
+    $node->showinflatnavigation = true;
+
+    $root->add_node($node);
+}
+

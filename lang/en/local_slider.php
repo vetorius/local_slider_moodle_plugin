@@ -27,6 +27,7 @@
 
 // plugin name
 $string['pluginname'] = 'Slider';
+$string['menutext'] = 'Slider manager';
 
 // page titles
 $string['indexslidertitle'] = 'NCA slider plugin';
