@@ -172,3 +172,49 @@ function call_api($functionname, $params=array()){
 
     return $sliders;
 }
+
+/**
+ * get the new sliders from the web service declared in config 
+ * 
+ * @return array The new sliders
+ */
+function obtain_new_remote_sliders(){
+
+    global $DB;
+
+    $sql = 'SELECT MAX(timemodified) AS lastmodified FROM {local_slider}';
+    if ($data = $DB->get_record_sql($sql)){
+        $syncdate = $data->lastmodified;
+    } else {
+        $syncdate = 0;
+    }
+
+    $sliderdata = call_api('local_slider_get_new_sliders', array('date'=>$syncdate));
+
+    return $sliderdata;
+}
+
+/**
+ * get the new sliders from the web service declared in config 
+ * 
+ * @param array The new sliders to insert in the database
+ */
+function synchonize_sliders($newsliders){
+
+    global $DB;
+    $count = 0;
+    if (!empty($newsliders)){
+        
+        foreach ($newsliders as $slider) {
+            $count++;
+            if ($prevslider = $DB->get_record('local_slider', array('name'=>$slider['name']))) {
+                // if the slidername exists, update the record
+                $slider['id'] = $prevslider->id;
+                $DB->update_record('local_slider', $slider);
+            } else {
+                $DB->insert_record('local_slider', $slider);
+            }
+        }
+    }
+    return $count;
+}
