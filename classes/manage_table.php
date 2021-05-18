@@ -18,7 +18,7 @@
  */
 
 /**
- * slider table with search class
+ * slider table class with pagination and search utilities.
  *
  * @package    local_slider
  * @author     Víctor M. Sanchez
@@ -29,9 +29,9 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * This class represents a table with one row for each slider
- * with butons to manage sliders
+ * with pagination and search utility.
  *
- * An ajaxy search UI shown at the top, if JavaScript is on.
+ * Uses footable library.
  */
 
 class local_slider_manage_table {
@@ -44,6 +44,7 @@ class local_slider_manage_table {
 
     /** Added to the class="" attribute on output. */
     protected $classes = array('table');
+
 
     /** Default number of capabilities in the table for the search UI to be shown. */
     const NUM_SLIDER_FOR_SEARCH = 3;
@@ -60,7 +61,17 @@ class local_slider_manage_table {
     }
 
     /**
+     * Returns the slider count
+     * 
+     */
+    public function count_sliders() {
+
+        return count($this->sliders);
+    }
+
+    /**
      * Display the table.
+     * 
      */
     public function display() {
         if (count($this->sliders) > self::NUM_SLIDER_FOR_SEARCH) {
@@ -95,6 +106,7 @@ class local_slider_manage_table {
 
     /**
      * Create the edition buttons
+     * 
      */
     private function create_buttons($id){
 
@@ -107,10 +119,10 @@ class local_slider_manage_table {
         $copyLink = new moodle_url("/local/slider/duplicateslider.php?id=$id");
         $buttons .= '<a href="' . $copyLink . '" class="btn btn-primary">';
         $buttons .= '<span class="fooicon fooicon-clone"></span></a>&nbsp;';
-        //generate pdf button
-        $pdfLink = '#'; //new moodle_url("/local/slider/...");
-        $buttons .= '<a href="' . $pdfLink . '" class="btn btn-primary" disabled>';
-        $buttons .= '<span class="fooicon fooicon-pdf"></span></a>&nbsp;';
+        //generate pdf button not implemented yet
+        // $pdfLink = '#'; //new moodle_url("/local/slider/topdf.php");
+        // $buttons .= '<a href="' . $pdfLink . '" class="btn btn-primary" disabled>';
+        // $buttons .= '<span class="fooicon fooicon-pdf"></span></a>&nbsp;';
         //add delete button
         $deleteLink = new moodle_url("/local/slider/delete.php?id=$id");
         $buttons .= '<a href="' . $deleteLink . '" class="btn btn-danger">';
@@ -118,6 +130,4 @@ class local_slider_manage_table {
 
         return $buttons;
     }
-
-
 }

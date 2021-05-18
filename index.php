@@ -45,40 +45,19 @@ echo $OUTPUT->header();
 //displays the slider editor
 $createslider = new moodle_url('/local/slider/insertslider.php?create=1');
 $insertslider = new moodle_url('/local/slider/insertslider.php');
-//$managesliders = new moodle_url('/local/slider/manage.php');
-//$downloadsliders = new moodle_url('/local/slider/test.php');
 $manual = new moodle_url('/local/slider/manual.php');
 
 echo '<div class="row">';
 echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
-//echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
-//echo '<a href="' . $downloadsliders . '" class="btn btn-primary" target="_blank">' . get_string('downloadbackup', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $manual . '" class="btn btn-primary">' . get_string('manualslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '</div><hr/>';
-
-/* echo '<hr/>';
-echo '<pre>';
-var_dump($CFG);
-echo '<p>' . time() . '</p>';
-echo '<p>' . userdate(time(), '%d %B %Y, %H:%M:%S') . '</p>';
-echo '</pre>'; */
-
 
 $table = new local_slider_manage_table('slidertable');
 $table->display();
 
-
-$sql = 'SELECT MAX(timemodified) AS lastmodified FROM {local_slider}';
-if ($data = $DB->get_record_sql($sql)){
-    echo '<div class="row"><p>La última fecha de actualización es: ';
-    echo $data->lastmodified;
-    echo '</p></div>';
-}
-
-$currentlang = current_language();
-echo '<div class="row"><p>El idioma actual es: ';
-echo $currentlang;
+echo '<div class="row"><p>';
+echo get_string('countofsliders', 'local_slider') . $table->count_sliders();
 echo '</p></div>';
 
 echo $OUTPUT->footer();

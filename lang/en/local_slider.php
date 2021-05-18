@@ -25,24 +25,33 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// plugin name
 $string['pluginname'] = 'Slider';
 
+// page titles
 $string['indexslidertitle'] = 'NCA slider plugin';
-
+$string['deleteslidertitle'] = 'Delete slider';
 $string['insertslidertitle'] = 'Insert new slider';
 $string['createslidertitle'] = 'Create new slider';
 $string['modifyslidertitle'] = 'Modify slider';
 $string['manualslidertitle'] = 'Slider plugin manual';
-$string['deleteslidertitle'] = 'Delete slider';
-$string['slidername'] = 'Slider name';
-$string['sliderjson'] = 'Slider JSON';
-$string['cancel'] = 'Operation cancelled';
-$string['cancelcreateslider'] = 'Slider creation cancelled';
-$string['successcreateslider'] = 'Slider created successfully';
-$string['successupdateslider'] = 'Slider updated successfully';
-$string['successdeleteslider'] = 'Slider deleted successfully';
-$string['successrenameslider'] = 'Slider renamed successfully';
 
+// common messages
+$string['successcreateslider'] = 'Slider created successfully.';
+$string['successupdateslider'] = 'Slider updated successfully.';
+$string['successdeleteslider'] = 'Slider deleted successfully.';
+$string['successrenameslider'] = 'Slider renamed successfully.';
+$string['cancelcreateslider'] = 'Slider creation cancelled.';
+$string['cancel'] = 'Operation cancelled.';
+$string['error'] = 'Something went wrong with your last request.';
+$string['commentdelete'] = 'Are you absolutely sure you want to delete the slider named {$a}?';
+$string['timeformat'] = '%d %m %Y, %H:%M:%S';
+
+// insertslider_form strings
+$string['slidername'] = 'Slider name:';
+$string['sliderjson'] = 'Slider JSON:';
+
+// settings strings
 $string['enableupdate'] = 'Enable slider update:';
 $string['enableupdatedesc'] = 'Enable the update service from a master repository.';
 $string['updateurl'] = 'Update service URL:';
@@ -50,25 +59,15 @@ $string['updateurldesc'] = 'This is the URL to access the External update servic
 $string['apikey'] = 'External API Key:';
 $string['apikeydesc'] = 'This is the key used to access the External API.';
 
-$string['managesliderstitle'] = 'Manage sliders';
-$string['action'] = 'Action';
-$string['edit'] = 'edit';
-$string['delete'] = 'delete';
-$string['rename'] = 'rename';
-$string['newslidername'] = 'New slider name';
-$string['sendaction'] = 'Send action';
-$string['error'] = 'Something went wrong with your last request';
-$string['nonewnameerror'] = 'You should give a new name to rename a slider';
-
+// access strings
 $string['slider:readsliders'] = 'read sliders';
 $string['slider:managesliders'] = 'manage sliders';
 
-$string['commentdelete'] = 'Are you absolutely sure you want to delete the slider named {$a}?';
-$string['timeformat'] = '%d %m %Y, %H:%M:%S';
-
+// index table strings
 $string['timecreated'] = 'Creation time';
 $string['timemodified'] = 'Modification time';
 $string['actions'] = 'Actions';
-$string['downloadbackup'] = 'Download backup';
+$string['countofsliders'] = 'Total count of sliders: ';
 
+// sync_sliders string
 $string['syncsliders'] = 'Synchronize sliders';

@@ -22,10 +22,9 @@
  */
 
 defined('MOODLE_INTERNAL') || die;
-//require_once("{$CFG->dirroot}/mod/sallenet/locallib.php");
+
 require_once("$CFG->libdir/externallib.php");
 require_once(dirname(__FILE__)."/locallib.php");
-//require_once("$CFG->libdir/weblib.php");
 
 class local_slider_external extends external_api {
     
@@ -37,14 +36,16 @@ class local_slider_external extends external_api {
     public static function get_sliders() {		
  
         //Parameter validation
-        //REQUIRED
         $params = self::validate_parameters(self::get_sliders_parameters(), array());
+
+        // check capabilities here if needed 
+
         $allsliders = compress_records(get_slider_data());
         $message = base64_encode($allsliders);
-
         $results = [
             'data' => $message,
         ];
+
         return $results;
     }
         
@@ -66,16 +67,17 @@ class local_slider_external extends external_api {
     public static function get_new_sliders($date) {		
         
         //Parameter validation
-        //REQUIRED
         $params = self::validate_parameters(self::get_new_sliders_parameters(),
                 array('date'=> $date));
+        
+        // check capabilities here if needed 
 
         $newsliders = compress_records(get_new_slider_data($date));
         $message = base64_encode($newsliders);
-
         $results = [
             'data' => $message,
         ];
+
         return $results;
     }
         

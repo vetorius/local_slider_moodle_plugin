@@ -18,57 +18,56 @@
  */
 
 /**
- * local_slider english language definitions
+ * local_slider spanish language definitions
  *
  * @package    local_slider
  * @author     Víctor M. Sanchez
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+ // plugin name
 $string['pluginname'] = 'Slider';
 
+// page titles
 $string['indexslidertitle'] = 'Plugin slider NCA';
-
+$string['deleteslidertitle'] = 'Eliminar slider';
 $string['insertslidertitle'] = 'Insertar nuevo slider';
 $string['createslidertitle'] = 'Crear nuevo slider';
 $string['modifyslidertitle'] = 'Modificar slider';
 $string['manualslidertitle'] = 'Manual del plugin Slider';
-$string['deleteslidertitle'] = 'Eliminar slider';
-$string['slidername'] = 'Nombre del slider';
-$string['sliderjson'] = 'JSON del slider' ;
-$string['cancel'] = 'Operación cancelada';
-$string['cancelcreateslider'] = 'Creación de slider cancelada';
-$string['successcreateslider'] = 'Slider creado con éxito';
-$string['successupdateslider'] = 'Slider actualizado con éxito';
-$string['successdeleteslider'] = 'Slider borrado con éxito';
-$string['successrenameslider'] = 'Slider renombrado con éxito';
 
-$string['enableupdate'] = 'Habilitar la actualización:';
-$string['enableupdatedesc'] = 'Habilita la actualización de sliders desde un repositorio central.';
-$string['updateurl'] = 'URL del servicio de actualización:';
-$string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización';
-$string['apikey'] = 'API Key:';
-$string['apikeydesc'] = 'Es la clave para acceder a la API externa de actualización';
-
-$string['managesliderstitle'] = 'Gestionar sliders';
-$string['action'] = 'Acción';
-$string['edit'] = 'modificar';
-$string['delete'] = 'borrar';
-$string['rename'] = 'renombrar';
-$string['newslidername'] = 'Nuevo nombre del slider';
-$string['sendaction'] = 'Realizar acción';
-$string['error'] = 'Algo falló en su última petición';
-$string['nonewnameerror'] = 'Tiene que proporcionar un nuevo nombre para renombrar un slider';
-
-$string['slider:readsliders'] = 'leer sliders';
-$string['slider:managesliders'] = 'gestionar sliders';
-
+// common messages
+$string['successcreateslider'] = 'Slider creado con éxito.';
+$string['successupdateslider'] = 'Slider actualizado con éxito.';
+$string['successdeleteslider'] = 'Slider borrado con éxito.';
+$string['successrenameslider'] = 'Slider renombrado con éxito.';
+$string['cancelcreateslider'] = 'Creación de slider cancelada.';
+$string['cancel'] = 'Operación cancelada.';
+$string['error'] = 'Algo falló en su última petición.';
 $string['commentdelete'] = '¿Está totalmente seguro de que quiere borrar el slider con nombre {$a}?';
 $string['timeformat'] = '%d %m %Y, %H:%M:%S';
 
+// insertslider_form strings
+$string['slidername'] = 'Nombre del slider:';
+$string['sliderjson'] = 'JSON del slider:' ;
+
+// settings strings
+$string['enableupdate'] = 'Habilitar la actualización:';
+$string['enableupdatedesc'] = 'Habilita la actualización de sliders desde un repositorio central.';
+$string['updateurl'] = 'URL del servicio de actualización:';
+$string['updateurldesc'] = 'Es la URL para acceder al servicio externo de actualización.';
+$string['apikey'] = 'API Key:';
+$string['apikeydesc'] = 'Es la clave para acceder a la API externa de actualización.';
+
+// access strings
+$string['slider:readsliders'] = 'leer sliders';
+$string['slider:managesliders'] = 'gestionar sliders';
+
+// index table strings
 $string['timecreated'] = 'Creado en';
 $string['timemodified'] = 'Modificado en';
 $string['actions'] = 'Acciones';
-$string['downloadbackup'] = 'Descargar backup';
+$string['countofsliders'] = 'Número total de sliders: ';
 
+// sync_sliders string
 $string['syncsliders'] = 'Sincroniza sliders';

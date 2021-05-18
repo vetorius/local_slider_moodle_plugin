@@ -28,7 +28,8 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot. '/local/slider/locallib.php');
 
 /**
- * An example of a scheduled task.
+ * sync_sliders is a synchronization task for local_slider plugin
+ * 
  */
 class sync_sliders extends \core\task\scheduled_task {
  
@@ -42,9 +43,11 @@ class sync_sliders extends \core\task\scheduled_task {
     }
  
     /**
-     * Execute the task.
+     * Execute the Synchronization task if it is enabled
+     * 
      */
     public function execute() {
+    
         if (get_config('local_slider', 'enableupdate')){
             $slidersnuevos = obtain_new_remote_sliders();
             synchonize_sliders($slidersnuevos);
