@@ -69,3 +69,6 @@ $string['timeformat'] = '%d %m %Y, %H:%M:%S';
 $string['timecreated'] = 'Creado en';
 $string['timemodified'] = 'Modificado en';
 $string['actions'] = 'Acciones';
+$string['downloadbackup'] = 'Descargar backup';
+
+$string['syncsliders'] = 'Sincroniza sliders';

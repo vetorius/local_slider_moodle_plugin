@@ -29,6 +29,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_slider';
 $plugin->release = 'beta1';
-$plugin->version   = 2021051701;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version   = 2021051702;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2018051700;        // Requires this Moodle version
 $plugin->maturity = MATURITY_BETA;

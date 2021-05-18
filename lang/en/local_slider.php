@@ -70,3 +70,5 @@ $string['timecreated'] = 'Creation time';
 $string['timemodified'] = 'Modification time';
 $string['actions'] = 'Actions';
 $string['downloadbackup'] = 'Download backup';
+
+$string['syncsliders'] = 'Synchronize sliders';
