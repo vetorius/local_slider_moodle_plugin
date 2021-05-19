@@ -25,8 +25,8 @@ $tasks = array(
     array(
         'classname' => 'local_slider\task\sync_sliders',
         'blocking'  => 0,
-        'minute'    => '25',
-        'hour'      => '11',
+        'minute'    => '30',
+        'hour'      => '1',
         'day'       => '*',
         'month'     => '*',
         'dayofweek' => '*',

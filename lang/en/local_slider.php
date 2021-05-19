@@ -35,7 +35,7 @@ $string['deleteslidertitle'] = 'Delete slider';
 $string['insertslidertitle'] = 'Insert new slider';
 $string['createslidertitle'] = 'Create new slider';
 $string['modifyslidertitle'] = 'Modify slider';
-$string['manualslidertitle'] = 'Slider plugin manual';
+$string['manualslidertitle'] = 'Plugin manual';
 
 // common messages
 $string['successcreateslider'] = 'Slider created successfully.';
