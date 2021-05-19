@@ -39,6 +39,10 @@ require_capability('local/slider:managesliders', $context);
 if ($sliderdata = $DB->get_record('local_slider', array('id'=>$sliderid))) {
     $recordtoinsert = new stdClass();
     $recordtoinsert->name = $sliderdata->name . '.COPY';
+    // delete previous copy if exists
+    if ($previouscopy = $DB->get_record('local_slider', array('name'=>$recordtoinsert->name))){
+        $DB->delete_records('local_slider', array('id'=>$previouscopy->id));
+    }
     $recordtoinsert->data = $sliderdata->data;
     $recordtoinsert->timecreated = time();
     $recordtoinsert->timemodified = time();
