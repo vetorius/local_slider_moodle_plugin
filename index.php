@@ -26,29 +26,38 @@
  */
 
 require_once(__DIR__. '/../../config.php');
+require_once(__DIR__. '/classes/manage_table.php');
 
+$context = \context_system::instance();
 $PAGE->set_url(new moodle_url('/local/slider/index.php'));
-$PAGE->set_context(\context_system::instance());
+$PAGE->set_context($context);
 $PAGE->set_title(get_string('indexslidertitle', 'local_slider'));
 
+$PAGE->set_heading(get_string('indexslidertitle', 'local_slider'));
+
 require_login();
+require_capability('local/slider:managesliders', $context);
+
+$PAGE->requires->css(new moodle_url('/local/slider/css/footable.standalone.min.css'));
 
 echo $OUTPUT->header();
 
 //displays the slider editor
 $createslider = new moodle_url('/local/slider/insertslider.php?create=1');
 $insertslider = new moodle_url('/local/slider/insertslider.php');
-$managesliders = new moodle_url('/local/slider/manage.php');
+$manual = new moodle_url('/local/slider/manual.php');
 
+echo '<div class="row">';
 echo '<a href="' . $insertslider . '" class="btn btn-primary">' . get_string('insertslidertitle', 'local_slider') . '</a>&nbsp;';
 echo '<a href="' . $createslider . '" class="btn btn-primary">' . get_string('createslidertitle', 'local_slider') . '</a>&nbsp;';
-echo '<a href="' . $managesliders . '" class="btn btn-primary">' . get_string('managesliderstitle', 'local_slider') . '</a>&nbsp;';
+echo '<a href="' . $manual . '" class="btn btn-primary">' . get_string('manualslidertitle', 'local_slider') . '</a>&nbsp;';
+echo '</div><hr/>';
 
-/*
-echo '<hr/>';
-echo '<pre>';
-var_dump($CFG);
-echo '</pre>';
-*/
+$table = new local_slider_manage_table('slidertable');
+$table->display();
+
+echo '<div class="row"><p>';
+echo get_string('countofsliders', 'local_slider') . $table->count_sliders();
+echo '</p></div>';
 
 echo $OUTPUT->footer();

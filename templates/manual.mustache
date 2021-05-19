@@ -1,0 +1,61 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_slider/manual
+
+    Boost 1 column layout template.
+
+
+    Example context (json):
+    {
+        
+    }
+}}
+<p>Hola {{firstname}}, bienvenido al manual.</p>
+<h3>Página principal del plugin</h3>
+<p>En la página principal del plugin tenemos tres botones y una tabla de sliders disponibles, paginada y con una casilla de búsqueda para filtrar por cualquiera de los tres campos.</p>
+<p>Los tres botones tienen las siguientes funciones:</p>
+<dl>
+    <dt>Insertar nuevo slider</dt>
+    <dd>Pulsando este botón accedemos aun formulario donde podemos insertar un slider indicando su nombre y el JSON, que habremos generado previamente por otros medios. Si el nombre que indicamos ya existe en la base de datos, guardará el anterior contenido del slider con el mismo nombre añadiendo <code>.BACKUP</code> al final.</dd>
+    <dt>Crear nuevo slider</dt>
+    <dd>Es el acceso a un formulario similar al anterior pero con un editor de sliders incrustado. El contenido del slider se va generando en la caja de texto inferior y es necesario indicar el nombre del slider. Si ya existe el nombre, funciona como en el caso anterior.</dd>
+    <dt>Manual del plugin</dt>
+    <dd>Acceso a esta página de manual.</dd>
+</dl>
+<p>La tabla tiene unos botones de acción para cada fila, que corresponden a:</p>
+<ul>
+    <li>{{# pix }}i/edit{{/ pix }} Edita el slider: abre el editor para el slider. Al guardar los cambios guarda el estado anterior del slider anadiendo <code>.BACKUP</code> al final.</li>
+    <li>{{# pix }}e/copy{{/ pix }} Duplicar slider: crea un duplicado del slider con el mismo nombre añadiendo <code>.COPY</code> al final.</li>
+    <li>{{# pix }}i/trash{{/ pix }} Borrar slider.</li>
+</ul>
+<h3>Editor de sliders</h3>
+<p>Pendiente para la próxima version</p>
+<h3>Ajustes del slider</h3>
+<p>El administrador de Moodle puede ajustar tres valores en la configuración del plugin.</p>
+<dl>
+    <dt>Habilitar la actualización</dt>
+    <dd>Indica si está habilitada la sincronización con un repositorio central.</dd>
+    <dt>URL del servicio de actualización</dt>
+    <dd>Es la URL del sitio con el que queremos sincronizar. Es preciso que este sitio tenga el plugin instalado y con el web service configurado en los ajustes de web services de Moodle</dd>
+    <dt>API key</dt>
+    <dd>Es el token que tenga el acceso al web service en el sitio con el que queremos sincronizar.</dd>
+</dl>
+<p>Si nuestro sitio no se va a sincronizar con otro no es necesario habilitarlos. En caso de que habilitemos la sincronización, habrá que activar también la tarea periódica que actualiza en <code>Administración del sitio > Servidor > Tareas programadas</code> para ajustar la frecuencia de actualización.</p>
+
+
+

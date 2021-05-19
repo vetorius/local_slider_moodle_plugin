@@ -30,52 +30,65 @@ defined('MOODLE_INTERNAL') || die;
 // Ensure the configurations for this site are set
 if ( $hassiteconfig ){
  
-	// Create the new settings page
-	// - in a local plugin this is not defined as standard, so normal $settings->methods will throw an error as
-	// $settings will be NULL
-	$settings = new admin_settingpage( 'local_slider', 'Ajustes de slider' );
+    // Create the new settings page
+    // - in a local plugin this is not defined as standard, so normal $settings->methods will throw an error as
+    // $settings will be NULL
+    $settings = new admin_settingpage( 'local_slider', 'Ajustes de slider' );
  
-	// Create 
-	$ADMIN->add( 'localplugins', $settings );
+    // Create 
+    $ADMIN->add( 'localplugins', $settings );
  
-	// Add update url field to the settings
-	$settings->add( new admin_setting_configtext(
+    // Add update url field to the settings
+    $settings->add( new admin_setting_configcheckbox(
  
-		// This is the reference you will use to your configuration
-		'local_slider/updateurl',
+        // This is the reference you will use to your configuration
+        'local_slider/enableupdate',
  
-		// This is the friendly title for the config, which will be displayed
-		get_string('updateurl', 'local_slider'),
+        // This is the friendly title for the config, which will be displayed
+        get_string('enableupdate', 'local_slider'),
  
-		// This is helper text for this config field
-		get_string('updateurldesc', 'local_slider'),
+        // This is helper text for this config field
+        get_string('enableupdatedesc', 'local_slider'),
  
-		// This is the default value
-		'No Key Defined',
- 
-		// This is the type of Parameter this config is
-		PARAM_TEXT
- 
-	) );
+        // This is the default value
+        0
+    ) );
 
-	// Add API key url field to the settings
-	$settings->add( new admin_setting_configtext(
+    // Add update url field to the settings
+    $settings->add( new admin_setting_configtext(
  
-		// This is the reference you will use to your configuration
-		'local_slider/apikey',
+        // This is the reference you will use to your configuration
+        'local_slider/updateurl',
  
-		// This is the friendly title for the config, which will be displayed
-		get_string('apikey', 'local_slider'),
+        // This is the friendly title for the config, which will be displayed
+        get_string('updateurl', 'local_slider'),
  
-		// This is helper text for this config field
-		get_string('apikeydesc', 'local_slider'),
+        // This is helper text for this config field
+        get_string('updateurldesc', 'local_slider'),
  
-		// This is the default value
-		'No Key Defined',
+        // This is the default value
+        '',
  
-		// This is the type of Parameter this config is
-		PARAM_TEXT
+        // This is the type of Parameter this config is
+        PARAM_TEXT
+    ) );
+
+    // Add API key url field to the settings
+    $settings->add( new admin_setting_configtext(
  
-	) );
+        // This is the reference you will use to your configuration
+        'local_slider/apikey',
  
+        // This is the friendly title for the config, which will be displayed
+        get_string('apikey', 'local_slider'),
+ 
+        // This is helper text for this config field
+        get_string('apikeydesc', 'local_slider'),
+ 
+        // This is the default value
+        '',
+ 
+        // This is the type of Parameter this config is
+        PARAM_TEXT
+    ) );
 }
